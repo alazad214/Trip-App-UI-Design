@@ -37,7 +37,13 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: RefreshIndicator(
-            onRefresh: () => Future.delayed(Duration(seconds: 3)),
+            onRefresh: () => Future.delayed(const Duration(seconds: 3), () {
+              languages.add({
+                "language": "c++",
+                "dis": "java is a very powerfull programmig language."
+              });
+              setState(() {});
+            }),
             child: ListView.builder(
                 itemCount: languages.length,
                 itemBuilder: (_, index) {
