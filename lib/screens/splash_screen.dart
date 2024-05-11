@@ -1,58 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+import 'home_screen.dart';
+
+class Splash extends StatefulWidget {
+  const Splash({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  State<Splash> createState() => _SplashState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
-  Set<Map> languages = {
-    {
-      "language": "Java",
-      "dis": "java is a very powerfull programmig language."
-    },
-    {
-      "language": "kotlin",
-      "dis": "java is a very powerfull programmig language."
-    },
-    {
-      "language": "python",
-      "dis": "java is a very powerfull programmig language."
-    },
-    {
-      "language": "rubby",
-      "dis": "java is a very powerfull programmig language."
-    }
-  };
+class _SplashState extends State<Splash> {
+  @override
+  void initState() {
+    Future.delayed(const Duration(seconds: 5), () {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (
+            _,
+          ) =>
+                  const HomeScreen()));
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Refressh indicator"),
-        centerTitle: true,
-      ),
-      body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: RefreshIndicator(
-            onRefresh: () => Future.delayed(const Duration(seconds: 3), () {
-              languages.add({
-                "language": "c++",
-                "dis": "java is a very powerfull programmig language."
-              });
-              setState(() {});
-            }),
-            child: ListView.builder(
-                itemCount: languages.length,
-                itemBuilder: (_, index) {
-                  return ListTile(
-                    title: Text(languages.elementAt(index)["language"]),
-                    subtitle: Text(languages.elementAt(index)["dis"]),
-                  );
-                }),
-          )),
-    );
+    final screenSize = MediaQuery.of(context).size;
+    return LayoutBuilder(builder: (context, constaints) {
+      return Scaffold(
+        body: SafeArea(
+            child: ListView(
+          children: [
+            Container(
+              height: screenSize.height / 1,
+              alignment: Alignment.center,
+              child: Center(
+                  child:
+                      Lottie.asset("assets/animation/anim.json", height: 100)),
+            )
+          ],
+        )),
+      );
+    });
   }
 }
