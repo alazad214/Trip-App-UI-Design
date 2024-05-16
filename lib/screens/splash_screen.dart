@@ -15,7 +15,7 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 5), () {
-      Get.offAll(HomeScreen());
+      Get.offAll(const HomeScreen());
     });
     super.initState();
   }
@@ -33,7 +33,7 @@ class _SplashState extends State<Splash> {
               alignment: Alignment.center,
               child: Center(
                   child:
-                      Lottie.asset("assets/animation/anim.json", height: 100)),
+                      Lottie.asset("assets/animations/anim.json", height: 100)),
             )
           ],
         )),
